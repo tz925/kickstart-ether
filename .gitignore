@@ -8,3 +8,5 @@ npm-debug.log
 # OS related
 .DS_Store
 desktop.ini
+
+.next
