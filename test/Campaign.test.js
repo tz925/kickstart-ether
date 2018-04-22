@@ -2,7 +2,7 @@ const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require('web3');
 const web3 = new Web3(ganache.provider())
-require('events').EventEmitter.defaultMaxListeners = 16
+require('events').EventEmitter.defaultMaxListeners = 20
 
 const compiledFactory = require('../ethereum/build/CampaignFactory.json')
 const compiledCampaign = require('../ethereum/build/Campaign.json')
@@ -48,7 +48,7 @@ describe('Campaigns', () => {
       from: accounts[1]
     });
     const isContributor = await campaign.methods.backers(accounts[1]).call();
-    assert(isContributor);
+    assert(isContributor > 0);
   });
 
   it('requires a minimum contribution', async () => {
