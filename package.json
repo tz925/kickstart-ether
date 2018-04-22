@@ -2,6 +2,9 @@
   "name": "kickstart-ether",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "repository": "https://github.com/tz925/kickstart-ether.git",
   "author": "tz925 <sai950925@hotmail.com>",
   "license": "MIT",
