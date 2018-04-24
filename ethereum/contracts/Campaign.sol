@@ -3,14 +3,15 @@ pragma solidity ^0.4.17;
 contract CampaignFactory {
     address[] public deployedCampaigns;
 
-    function createCampaign(uint minimum) public {
-        address newCampaign = new Campaign(minimum, msg.sender);
+    function createCampaign(uint minimum, string title, string detail) public {
+        address newCampaign = new Campaign(minimum, msg.sender, title, detail);
         deployedCampaigns.push(newCampaign);
     }
 
     function getDeployedCampaigns() public view returns (address[]) {
         return deployedCampaigns;
     }
+
 }
 
 contract Campaign {
@@ -27,23 +28,27 @@ contract Campaign {
     address public manager;
     uint public minimumContribution;
     mapping(address => uint) public backers;
-    uint public backerCount;
+    uint public backersCount;
     uint public total;
+    string public title;
+    string public detail;
 
     modifier restricted() {
         require(msg.sender == manager);
         _;
     }
 
-    function Campaign(uint minimum, address creator) public {
+    function Campaign(uint minimum, address creator, string campaignTitle, string campaignDetail) public {
         manager = creator;
         minimumContribution = minimum;
+        title = campaignTitle;
+        detail = campaignDetail;
     }
 
     function contribute() public payable {
         require(msg.value >= minimumContribution);
         backers[msg.sender] = msg.value;
-        backerCount++;
+        backersCount++;
         total += msg.value;
     }
 
@@ -75,5 +80,25 @@ contract Campaign {
 
         req.recipient.transfer(req.value);
         req.complete = true;
+    }
+
+    function getSummary() public view returns (uint, uint, uint, uint, address, string, string) {
+        return (
+            minimumContribution,
+            address(this).balance,
+            requests.length,
+            backersCount,
+            manager,
+            title,
+            detail
+        );
+    }
+
+    function getRequestsCount() public view returns (uint) {
+        return requests.length;
+    }
+
+    function getTitle() public view returns (string) {
+        return title;
     }
 }

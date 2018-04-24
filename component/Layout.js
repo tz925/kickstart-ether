@@ -11,7 +11,7 @@ export default (props) => {
       </Head>
       <Header />
       {props.children}
-      <Segment >
+      <Segment style={{marginTop: '100px'}}>
         <p>*contributers get more voting power when contributing more coin</p>
         <p>2018 by Tunan Zhou</p>
       </Segment>
