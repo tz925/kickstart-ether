@@ -82,7 +82,7 @@ contract Campaign {
         req.complete = true;
     }
 
-    function getSummary() public view returns (uint, uint, uint, uint, address, string, string) {
+    function getSummary() public view returns (uint, uint, uint, uint, address, string, string, uint) {
         return (
             minimumContribution,
             address(this).balance,
@@ -90,7 +90,8 @@ contract Campaign {
             backersCount,
             manager,
             title,
-            detail
+            detail,
+            total
         );
     }
 
