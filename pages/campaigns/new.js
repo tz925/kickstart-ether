@@ -4,6 +4,7 @@ import Layout from '../../component/Layout'
 import factory from '../../ethereum/factory'
 import web3 from '../../ethereum/web3'
 import { Router } from '../../routes'
+import { conciseError} from '../../utils'
 
 export default class CampaignNew extends Component {
   state = {
@@ -26,7 +27,7 @@ export default class CampaignNew extends Component {
 
       Router.pushRoute('/')
     } catch (e) {
-      this.setState({ error: e.message})
+      this.setState({ error:conciseError(e.message)})
       console.log(e);
     }
     this.setState({loading: false})
