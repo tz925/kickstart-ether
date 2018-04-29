@@ -3,6 +3,7 @@ import Layout from '../../component/Layout'
 import Campaign from '../../ethereum/campaign'
 import {Header,Segment,Card} from 'semantic-ui-react'
 import web3 from '../../ethereum/web3'
+import ContributeForm from '../../component/ContributeForm'
 
 export default class CampaignDetail extends Component {
   static async getInitialProps(props) {
@@ -25,7 +26,7 @@ export default class CampaignDetail extends Component {
 
   render(){
     const {
-      balance,manager,minimumContribution,requestsCount,backersCount,title,detail
+      balance,manager,minimumContribution,requestsCount,backersCount,title,detail,total
     } = this.props
     const items = [
       {
@@ -58,12 +59,12 @@ export default class CampaignDetail extends Component {
         description: 'How much money this campaign has left to spend.',
         style: { overflowWrap: 'break-word'}
       },
-      // {
-      //   header: web3.utils.fromWei(total, 'ether'),
-      //   meta: 'Total raised money',
-      //   description: 'Total amount of money this campaign has raised.',
-      //   style: { overflowWrap: 'break-word'}
-      // },
+      {
+        header: web3.utils.fromWei(total, 'ether'),
+        meta: 'Total raised money',
+        description: 'Total amount of money this campaign has raised.',
+        style: { overflowWrap: 'break-word'}
+      },
     ]
 
     return (
@@ -76,6 +77,7 @@ export default class CampaignDetail extends Component {
           {detail}
         </Segment>
         <Card.Group items={items}></Card.Group>
+        <ContributeForm />
       </Layout>
     )
   }
