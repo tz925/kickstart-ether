@@ -9,4 +9,6 @@ npm-debug.log
 .DS_Store
 desktop.ini
 
-.next
+.next/
+node_modules/
+*.log
