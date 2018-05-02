@@ -35,6 +35,8 @@ export default class Index extends Component {
       <Layout>
         <div>
           <h3>Open Campaigns</h3>
+          <h5>This App runs smart contract on Ethereum Rinkeby Test Network,</h5>
+          <h5>Installation of MetaMask is recommanded to properly use this App.</h5>
           <Link route='campaigns/new'>
             <a>
               <Button floated='right' content="Create Campaign" icon="add circle" positive primary />
